@@ -48,6 +48,9 @@ spec:
       {{- end }}
       terminationGracePeriodSeconds: 0
       automountServiceAccountToken: false
+      {{- if .Values.prePuller.priorityClass }}
+      priorityClassName: {{ .Values.prePuller.priorityClass }}
+      {{- end }}
       {{- if or .Values.singleuser.imagePullSecret.enabled .Values.singleuser.image.pullSecrets }}
       imagePullSecrets:
         {{- if .Values.singleuser.imagePullSecret.enabled }}
